@@ -33,7 +33,7 @@ class UserFactory extends Factory
             'role_id' => 3,
             'mobile' => 76123456,
            // 'email' => $this->faker->unique()->safeEmail,
-           'email' => 'admin@cattlebid.com',
+           'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make($password), // password
             'remember_token' => Str::random(10),

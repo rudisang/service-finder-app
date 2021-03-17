@@ -44,7 +44,7 @@
             </div>
 
             <div>
-                <x-label for="role" :value="__('Role')" />
+                <x-label for="role" :value="__('Account Type')" />
                 <select class="form-select mt-1 block w-full" name="role_id">
                     <option value="" selected disabled></option>
                     <option value="{{$roles[0]->id}}">{{$roles[0]->role}}</option> 

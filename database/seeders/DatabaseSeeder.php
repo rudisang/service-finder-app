@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Role::factory()
         ->count(3)
         ->state(new Sequence(
-            ['role' => 'Bidder'],
-            ['role' => 'Seller'],
+            ['role' => 'Personal'],
+            ['role' => 'Service Provider'],
             ['role' => 'Admin'],
         ))
         ->create();

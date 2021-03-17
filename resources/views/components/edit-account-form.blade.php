@@ -68,7 +68,7 @@
                   <input type="hidden" value="2" name="role_id">
 
                   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    Sellers are not allowed to change their account types.
+                    Service Providers are not allowed to change their account types.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -82,8 +82,8 @@
                         <label for="exampleFormControlSelect1">Account Type</label>
                         <select name="role_id" class="form-control" id="exampleFormControlSelect1">
 
-                               <option value="1" selected='selected'>Bidder</option>
-                               <option value="2">Seller</option>
+                               <option value="1" selected='selected'>Personal</option>
+                               <option value="2">Service Provider</option>
                         </select>
                         @if ($errors->has('role_id'))
                         <span class="help-block">

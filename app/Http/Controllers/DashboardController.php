@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Service;
 use Auth;
 
 class DashboardController extends Controller
@@ -26,6 +27,96 @@ class DashboardController extends Controller
             $roles = Role::all();
             $users = User::all();
             return view('dashboard.index')->with('roles', $roles)->with('users', $users);
+    }
+
+    public function createNewService(){
+
+        if(auth()->user()->role_id == 2){
+            if(auth()->user()->service){
+                return redirect('/dashboard')->with('error', 'You can only manage one service provider account at a time');
+            }else{
+                return view('dashboard.create-service');
+            }
+            
+        }else{
+            return redirect('/dashboard')->with('error', 'You are not authorized to view that page');
+        }
+    
+    }
+
+    public function storeNewService(Request $request){
+       
+        $request->validate([
+            'title' => 'required|string|max:50',
+            'category' => 'required|string|max:50',
+            'logo' => 'image|max:1999',
+            'cover' => 'image|max:1999',
+            'address' => 'required|string|max:200',
+            'location_lat' => 'required',
+            'location_long' => 'required',
+            'about' => 'required',
+            'gallery'=> 'required',
+            'services' => 'required',
+            'service_list' => 'required|string|max:100',
+        ]);
+
+        if($request->hasFile('logo')){
+            $logo = $request->logo->getClientOriginalName().time().'.'.$request->logo->extension();  
+          // $request->logo->public_path('logos', $logo);
+          $request->logo->move(public_path('logos'), $logo);
+
+
+        } else {
+            $logo = 'no_logo.png';
+        }
+
+        if($request->hasFile('cover')){
+            $cover = $request->cover->getClientOriginalName().time().'.'.$request->cover->extension();  
+       //$request->cover->public_path('documents', $cover);
+       $request->cover->move(public_path('covers'), $cover);
+       
+        }else {
+            $cover = 'no_cover.jpg';
+        }
+
+        $gallery = array();
+
+        if($request->hasFile('gallery')){
+            foreach($request->gallery as $image){
+                
+                array_push($gallery, $image->getClientOriginalName().time().'.'.$image->extension());
+                $image->move(public_path('gallery'), $image->getClientOriginalName().time().'.'.$image->extension());
+            }
+
+           // $gallery = $request->gallery->getClientOriginalName().time().'.'.$request->gallery->extension();  
+          // $request->gallery->public_path('documents', $gallery);
+         // $request->gallery->move(public_path('gallery'), $gallery);
+        }
+        
+        $myArray = explode(',', $request->service_list);
+        $list = json_encode($myArray);
+        $galleryobj = json_encode($gallery);
+
+        
+        $service = new Service;
+
+        $service->user_id = auth()->user()->id;
+        $service->title = $request->title;
+        $service->logo = $logo;
+        $service->cover = $cover;
+        $service->category = $request->category;
+        $service->address = $request->address;
+        $service->location_lat = $request->location_lat;
+        $service->location_long = $request->location_long;
+        $service->about = $request->about;
+        $service->services = $request->services;
+        $service->service_list = $list;
+        $service->gallery = $galleryobj;
+
+        $service->save();
+
+        return redirect('/dashboard')->with("success", "Your Account has been created");
+        
     }
 
     public function editUser($id){

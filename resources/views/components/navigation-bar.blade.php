@@ -1,7 +1,7 @@
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-          <a class="navbar-brand" href="/"><img class="" src="{{asset('images/reg_icon.gif')}}" width=80
+          <a class="navbar-brand" href="/"><img class="" src="{{asset('images/logo.png')}}" width=60
                   alt="reg icon"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
                       <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Latest Bids</a>
+                      <a class="nav-link" href="/services">Latest Services</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="#">About</a>

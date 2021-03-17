@@ -7,24 +7,24 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active trim">
-        <img src="{{asset('images/slide1.jpg')}}" class="d-block w-100" alt="...">
+        <img src="{{asset('images/slide1.jpg')}}" class="d-block w-100 dim" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Some representative placeholder content for the first slide.</p>
+          <h2>Need a Fresh Hairdo</h2>
+          <p>Find local barbers &amp; hair salons at the click of a button.</p>
         </div>
       </div>
       <div class="carousel-item trim">
-        <img src="{{asset('images/slide3.jpg')}}" class="d-block w-100" alt="...">
+        <img src="{{asset('images/slide3.jpg')}}" class="d-block w-100 dim" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Some representative placeholder content for the second slide.</p>
+          <h2>Nail Bars Near You</h2>
+          <p>Manicures and pedicures at affordable pricing.</p>
         </div>
       </div>
       <div class="carousel-item trim">
-        <img src="{{asset('images/slider2.png')}}" class="d-block w-100" alt="...">
+        <img src="{{asset('images/slide2.jpg')}}" class="d-block w-100 dim" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Some representative placeholder content for the third slide.</p>
+          <h2>Treat Yourself to a Spa Day</h2>
+          <p>Get a relaxing massage from 5 star Spas.</p>
         </div>
       </div>
     </div>

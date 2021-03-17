@@ -1,7 +1,7 @@
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/"><img class="" src="{{asset('images/reg_icon.gif')}}" width=80
+            <a class="navbar-brand" href="/"><img class="" src="{{asset('images/logo.png')}}" width=60
                     alt="reg icon"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Bids</a>
+                        <a class="nav-link" href="/services">Services</a>
                     </li>
                 </ul>
 
