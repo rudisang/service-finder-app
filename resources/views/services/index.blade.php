@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="row" style="width:100% !important">
+<section class="row dis-none" style="width:100% !important">
     
         <div class="col-sm-12 col-md-6" style="margin:0 !important;padding:0 !important">
             <div id="map"></div>

@@ -13,11 +13,11 @@
 @endsection
 
 @section('content')
-<section class="container my-4">
+<section class="container my-4 dis-none">
     <x-flash-messages />
 </section>
 
-<section class="container my-4">
+<section class="container my-4 dis-none">
     <div>
         
                 <form method="POST" action="/dashboard/create-service" enctype="multipart/form-data">

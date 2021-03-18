@@ -130,6 +130,88 @@ class DashboardController extends Controller
         return view('/dashboard.edit-users')->with('user', $user);
     }
 
+    public function editService($id){
+        $service = Service::find($id);
+        
+        // Check for correct user
+        if($service->user_id !== auth()->user()->id){
+    
+                return redirect('/dashboard')->with('error', 'You are not authorized to view that page');
+           
+        }
+
+        return view('/services.edit')->with('service', $service);
+    }
+
+    public function updateService(Request $request, $id){
+        $request->validate([
+            'title' => 'required|string|max:50',
+            'category' => 'required|string|max:50',
+            'address' => 'required|string|max:200',
+            'location_lat' => 'required',
+            'location_long' => 'required',
+            'about' => 'required',
+            'services' => 'required',
+            'service_list' => 'required|string|max:100',
+        ]);
+
+        $myArray = explode(',', $request->service_list);
+        $list = json_encode($myArray);
+
+        $service = Service::find($id);
+
+        $service->title = $request->title;
+        $service->category = $request->category;
+        $service->address = $request->address;
+        $service->location_lat = $request->location_lat;
+        $service->location_long = $request->location_long;
+        $service->about = $request->about;
+        $service->services = $request->services;
+        $service->service_list = $list;
+
+        $service->save();
+
+        return back()->with("success", "Changes Successful");
+    }
+
+    public function updateServiceImages(Request $request, $id){
+
+        $service = Service::find($id);
+        
+        if($request->hasFile('logo')){
+            $request->validate([
+                'logo' => 'image|max:1999',
+               
+            ]);
+            $logo = $request->logo->getClientOriginalName().time().'.'.$request->logo->extension();  
+          // $request->logo->public_path('logos', $logo);
+          $request->logo->move(public_path('logos'), $logo);
+
+
+        } else {
+            $logo = $service->logo;
+        }
+
+        if($request->hasFile('cover')){
+            $request->validate([
+              
+                'cover' => 'image|max:1999'
+            ]);
+            $cover = $request->cover->getClientOriginalName().time().'.'.$request->cover->extension();  
+       //$request->cover->public_path('documents', $cover);
+       $request->cover->move(public_path('covers'), $cover);
+       
+        }else {
+            $cover = $service->cover;
+        }
+
+        $service->logo = $logo;
+        $service->cover = $cover;
+      
+        $service->save();
+        return back()->with('success', 'images updated');
+    }
+
     public function editAccount(){
         return view('dashboard.edit-account');
     }

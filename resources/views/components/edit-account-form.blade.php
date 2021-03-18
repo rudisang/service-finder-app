@@ -1,4 +1,18 @@
 <div>
+  @if (Auth::user()->role_id == 2)
+    @if (Auth::user()->service)
+      <div class="card mb-4" style="border:none">
+        <div class="card-body">
+          <h5>Business Account</h5>
+          <hr>
+          <img width=80 style="border-radius:100%" src="{{asset('logos/'.Auth::user()->service->logo)}}" alt="">
+          <a href="/dashboard/account/service/{{Auth::user()->service->id}}" class="btn btn-info">Manage</a>
+        </div>
+      </div>
+      @else
+      
+    @endif
+  @endif
     <div class="card" style="border: none">
         <div class="card-body">
           <h5 class="card-title">Edit Details</h5>
@@ -38,7 +52,7 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="age" class="form-label">Age</label>
+                    <label for="age" class="form-label">DoB</label>
                     <input type="date" name="age" class="form-control" value="{{Auth::user()->age}}" id="age">
                     @if ($errors->has('age'))
                     <span class="help-block">

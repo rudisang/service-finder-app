@@ -44,7 +44,7 @@
         </div>
      </section>
     @else
-    <section class="container my-4">
+    <section class="container my-4 dis-none">
       <a href="/dashboard/create-service" class="btn btn-info">Setup Company</a>
     </section>
 

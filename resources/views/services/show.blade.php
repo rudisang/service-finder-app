@@ -20,7 +20,7 @@ if(count($service->ratings) == 0){
 }
     
 @endphp
-<section>
+<section class="dis-none">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -48,7 +48,7 @@ if(count($service->ratings) == 0){
     </section>
 
 
-<section class="container" style="margin-top:-100px">
+<section class="container dis-none" style="margin-top:-100px">
     <x-flash-messages />
 
   <div class="card shadow p-3 mb-5 bg-white rounded hoverable" style="border:none;border-radius:25px !important;">

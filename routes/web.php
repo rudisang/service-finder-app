@@ -29,6 +29,9 @@ Route::post('/dashboard/create-user', [DashboardController::class, 'storeNewUser
 Route::get('/dashboard/create-user', [DashboardController::class, 'createUser']);
 Route::get('/dashboard/account', [DashboardController::class, 'editAccount']);
 
+Route::patch('service/edit/{id}', [DashboardController::class, 'updateService']);
+Route::patch('service/images/{id}', [DashboardController::class, 'updateServiceImages']);
+Route::get('/dashboard/account/service/{id}', [DashboardController::class, 'editService']);
 Route::get('/dashboard/account/user/{id}', [DashboardController::class, 'editUser']);
 Route::delete('/dashboard/account/user/{id}', [DashboardController::class, 'deleteUser']);
 Route::patch('/dashboard/account/update-password/{id}', [DashboardController::class, 'updatePassword']);
