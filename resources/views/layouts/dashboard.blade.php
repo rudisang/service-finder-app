@@ -8,18 +8,25 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/tagsinput.css')}}">
     <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
-
+    <link rel="stylesheet" href="{{asset('css/cal.min.css')}}">
     <title>Dashboard Cattle Bidder App</title>
     <style>
+        a{
+            color: black;
+            text-decoration: none !important;
+        }
         body {
             background-color: #F3F4F6;
         }
         .checked {
         color: orange;
       }
-
+      #calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
       .dis-none{
-          display:none;
+        
       }
 
         .upload:hover{
@@ -55,6 +62,11 @@
                 } );
 </script>
 <script src="{{asset('js/tagsinput.js')}}"></script>
+<script src="{{asset('js/cal.min.js')}}"></script>
+<script src="{{asset('js/locales-all.min.js')}}"></script>
+
+@yield('scripts')
 </body>
+
 
 </html>

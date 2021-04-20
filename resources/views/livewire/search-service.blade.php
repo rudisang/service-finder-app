@@ -3,7 +3,7 @@
     <input style="width:100% !important" name="search" class="form-control" type="text" id="search" placeholder="Search" aria-label="Search">
 <br>
 <div id="results">
-
+<div class="row">
   @foreach($services as $service)
   @php
   $overall = 0;
@@ -22,7 +22,7 @@
   }
       
   @endphp
-<a href="/services/{{$service->id}}" style="text-decoration: none;color:black">
+<a href="/services/{{$service->id}}" style="text-decoration: none;color:black" class="col col-sm-12 col-md-6">
   <div class="card shadow p-3 mb-5 bg-white rounded hoverable" style="border:none;border-radius:25px !important">
     <div class="card-body">
       <div class="media">
@@ -42,6 +42,7 @@
 </div>
 </a>
       @endforeach
+    </div>
 </div>
    
 </div>

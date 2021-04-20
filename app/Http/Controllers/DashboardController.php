@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Service;
+use App\Models\Booking;
+use Carbon\Carbon;
+
 use Auth;
 
 class DashboardController extends Controller
@@ -320,9 +323,50 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function bookingForm($id)
     {
-        //
+        $service = Service::find($id);
+        return view('services.booking')->with('service',$service);
+    }
+
+    public function book(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'start_date' => 'required|date|after:today',
+            'start_time' => 'required',
+        ]);
+
+        $start = date($request->start_date." ".$request->start_time);
+
+        $start_date = Carbon::parse($start);
+        
+        
+        //$start  = concat($request->start_date, ' ', strtotime($request->start_time));
+        $timestamp = strtotime($request->start_time) + 120*60;
+
+        $time = date('H:i', $timestamp);
+
+        $end = date($request->start_date." ".$time);
+        $end_date = Carbon::parse($end);
+       
+        //$end  = concat($request->start_date, ' ', $time);
+        
+
+        $service = Service::find($id);
+
+        Booking::create([
+            'title' => $request->title,
+            'start' => $start_date,
+            'end' => $end_date,
+            'service_id' => $id,
+            'user_id' => Auth::user()->id,
+            'confirmed' => 0,
+            'message' => null,
+            
+        ]);
+      
+        return redirect('/dashboard')->with('success','Appointment Request Successful');
     }
 
     /**
@@ -365,9 +409,24 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function approveBooking(Request $request, $id)
     {
-        //
+        $request->validate([
+            'approve' => 'required',
+        ]);
+
+        $booking = Booking::find($id);
+        $booking->confirmed = $request->approve;
+        if($request->has('message')){
+            $booking->message = $request->message; 
+        }else{
+            $booking->message = null;   
+        }
+
+        $booking->save();
+
+        return back()->with('success','Booking Updated');
+        
     }
 
     /**
@@ -376,8 +435,19 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function cancelBooking($id)
     {
-        //
+        $booking = Booking::find($id);
+      
+        $booking->delete();
+   
+ 
+        return redirect('/dashboard')->with("success", "Your Booking Has Been Cancelled");
+    }
+
+    public function allBookings()
+    {
+
+        return view('dashboard.all-bookings');
     }
 }

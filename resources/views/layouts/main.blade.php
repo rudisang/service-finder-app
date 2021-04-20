@@ -71,7 +71,7 @@
         }
 
         .dis-none{
-            display:none !important;
+            
         }
 
         .dim{

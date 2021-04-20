@@ -21,6 +21,12 @@ Route::get('/', function () {
     return view('welcome')->with('services', $services);
 });
 
+Route::get('/service/book/{id}', [DashboardController::class, 'bookingForm']);
+Route::post('/service/book/{id}', [DashboardController::class, 'book']);
+Route::delete('/cancel/booking/{id}', [DashboardController::class, 'cancelBooking']);
+Route::patch('/service/book/approve/{id}', [DashboardController::class, 'approveBooking']);
+Route::get('/dashboard/bookings/', [DashboardController::class, 'allBookings']);
+
 Route::get('/search', [ServiceController::class, 'search']);
 Route::post('/rate', [ServiceController::class, 'rate']);
 Route::post('/dashboard/create-service', [DashboardController::class, 'storeNewService']);

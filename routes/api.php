@@ -14,6 +14,7 @@ use App\Http\Controllers\ServiceController;
 |
 */
 Route::get('/services', [ServiceController::class, 'apiGetAllServices']);
+Route::get('/bookings', [ServiceController::class, 'apiGetAllBookings']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

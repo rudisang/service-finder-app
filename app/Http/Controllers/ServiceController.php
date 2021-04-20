@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Rating;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -53,6 +54,13 @@ class ServiceController extends Controller
     public function apiGetAllServices()
     {
         $products = Service::get()->toJson(JSON_PRETTY_PRINT);
+        return response($products, 200);
+     
+    }
+
+    public function apiGetAllBookings()
+    {
+        $products = Booking::where('confirmed','=',true)->get()->toJson(JSON_PRETTY_PRINT);
         return response($products, 200);
      
     }

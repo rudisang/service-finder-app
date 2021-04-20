@@ -32,4 +32,8 @@ class Service extends Model
     public function ratings() {
         return $this->hasMany('App\Models\Rating');
     }
+
+    public function bookings() {
+        return $this->hasMany('App\Models\Booking');
+    }
 }

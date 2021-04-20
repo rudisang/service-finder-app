@@ -160,7 +160,8 @@ function initMap() {
                       );
 
                       console.log(distanceInMeters *0.001)
-                        htmlOutput += '<div class="card shadow p-3 mb-5 bg-white rounded hoverable" style="border:none;border-radius:25px !important">'+
+                        htmlOutput += '<a href="/services/'+post.id+'" style="text-decoration: none;color:black" class="col col-sm-12 col-md-6">'+
+                        '<div class="card shadow p-3 mb-5 bg-white rounded hoverable" style="border:none;border-radius:25px !important">'+
                         '<div class="card-body">'+
                             '<div class="media">'+
                                 '<img width=80 src="/logos/'+post.logo+'" class="align-self-center mr-3" alt="...">'+
@@ -171,7 +172,8 @@ function initMap() {
                                 '</div>'+
                               '</div>'+
                           '</div>'+
-                      '</div>';
+                      '</div>'+
+                      '</a>';
                       });
 
                       $( '#results' ).html( htmlOutput );

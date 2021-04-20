@@ -65,7 +65,15 @@ if(count($service->ratings) == 0){
   <div class="card shadow p-3 mb-5 bg-white rounded hoverable" style="border:none;border-radius:25px !important;">
     <div class="card-body">
       <h4>Services</h4>
-      <a href="" class="btn btn-info"><i class="far fa-calendar-alt"></i> Book Appointment</a>
+      @guest
+      <a href="/login" class="btn btn-info"><i class="far fa-calendar-alt"></i>Login To Book Appointment</a>
+         @else
+        @if (Auth::user()->id == $service->user_id)
+        <a href="/dashboard/account/service/{{$service->id}}" class="btn btn-warning">Edit My Service</a>
+        @else
+        <a href="/service/book/{{$service->id}}" class="btn btn-info"><i class="far fa-calendar-alt"></i> Book Appointment</a>
+        @endif
+      @endguest
       
       {!!$service->services!!}
     </div>
